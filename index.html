@@ -1,0 +1,112 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+
+  <!-- PLEASE NO CHANGES BELOW THIS LINE (UNTIL I SAY SO) -->
+  <script language="javascript" type="text/javascript" src="libraries/p5.js"></script>
+  <script language="javascript" type="text/javascript" src="libraries/p5.dom.js"></script>
+  <script language="javascript" type="text/javascript" src="libraries/p5.sound.js"></script>
+  <script language="javascript" type="text/javascript" src="mirror_pix.js"></script>
+  <!-- OK, YOU CAN MAKE CHANGES BELOW THIS LINE AGAIN -->
+  
+  <script type="text/javascript" src="//code.jquery.com/jquery-3.1.0.js"></script>
+  <script type="text/javascript" src="https://download.affectiva.com/js/3.2/affdex.js"></script>
+
+  <!-- This line removes any default padding and style. 
+       You might only need one of these values set. -->
+  <style> body {padding: 0; margin: 0;} </style>
+</head>
+
+<body>
+
+      <div  id="affdex_elements" style="width:0px;height:0px;"></div>
+      <div >
+          
+    <!-- <div class="container-fluid">
+    <div class="row">
+      <div  id="affdex_elements" style="width:0px;height:0px;"></div>
+      <div >
+        <div style="height:25em;">
+          <strong>EMOTION TRACKING VERSION</strong>
+           <div id="results" style="word-wrap:break-word;"></div> 
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+</body>
+
+<script type='text/javascript'>
+
+      //<![CDATA[
+
+      // SDK Needs to create video and canvas nodes in the DOM in order to function
+      // Here we are adding those nodes a predefined div.
+      var divRoot = $("#affdex_elements")[0];
+      var width = 640;
+      var height = 480;
+      var faceMode = affdex.FaceDetectorMode.LARGE_FACES;
+
+      //Construct a CameraDetector and specify the image width / height and face detector mode.
+      var detector = new affdex.CameraDetector(divRoot, width, height, faceMode);
+
+      //Enable detection of all Expressions, Emotions and Emojis classifiers.
+      detector.detectAllEmotions();
+      detector.detectAllExpressions();
+      detector.detectAllEmojis();
+      detector.detectAllAppearance();
+
+      //Add a callback to notify when the detector is initialized and ready for runing.
+      detector.addEventListener("onInitializeSuccess", function() {
+        log('#logs', "The detector reports initialized");
+        //Display canvas instead of video feed because we want to draw the feature points on it
+        //$("#face_video_canvas").css("display", "block");
+      });
+
+      function log(node_name, msg) {
+        $(node_name).append("<span>" + msg + "</span><br />")
+      }
+
+      //function executes when Start button is pushed.
+      // function onStart() {
+         if (detector && !detector.isRunning) {
+           $("#logs").html("");
+            detector.start();
+         }
+
+      //Add a callback to notify when camera access is allowed
+      detector.addEventListener("onWebcamConnectSuccess", function() 
+      {
+        console.log("have access to webcam");
+      });
+      $("#face_video").css("display", "none");
+
+      //Add a callback to receive the results from processing an image.
+      //The faces object contains the list of the faces detected in an image.
+      //Faces object contains probabilities for all the different expressions, emotions and appearance metrics
+      
+      detector.addEventListener("onImageResultsSuccess", function(faces, image, timestamp) {
+        $('#results').html("");
+        
+        log('#results', "Timestamp: " + timestamp.toFixed(2));
+        
+        log('#results', "Number of faces found: " + faces.length);
+        
+        if (faces.length > 0) {
+          log('#results', "Appearance: " + JSON.stringify(faces[0].appearance));
+          log('#results', "Emotions: " + JSON.stringify(faces[0].emotions, function(key, val) {
+            return val.toFixed ? Number(val.toFixed(0)) : val;
+          }));
+        }
+
+          log('#results', "Expressions: " + JSON.stringify(faces[0].expressions, function(key, val) {
+            return val.toFixed ? Number(val.toFixed(0)) : val;
+          }));
+          
+          log('#results', "Emoji: " + faces[0].emojis.dominantEmoji);
+          joyvalue = faces[0].emotions.joy;
+      })
+
+</script>
+
+</html>
