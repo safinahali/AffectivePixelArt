@@ -17,3 +17,7 @@
 - Script - google-images-download.py (python2 or 3) 
 - Use 'keyword' for the main word, example 'girl' then use secondary word if you want adjectives 'sad' or leave it blank
 - It downloads 100 images, change time to the number of images you want[]()
+
+## Heart rate stuff
+- Pulse sensor folder 
+- To plug this to the particles, send the BPM values you get
