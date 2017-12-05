@@ -32,11 +32,11 @@ function Particle() {
     //image(img,0,0, width, height);
     var getk  = img.get(this.pos.x, this.pos.y);
     //this is cool colors with perlin noise
-    //stroke(20, this.h, 60, 30);
+    stroke(20, this.h, 60, 30);
     //this is getting colors from the image
     //stroke(getk[0], getk[1], getk[2], 70);
-    //this is doig different colors for the noise in black or white parts of silhouette images
-    stroke(getk[2]/3 - (this.h/2), this.h, 30, 40);
+    //uncomment for img, this is doing different colors for the noise in black or white parts of silhouette images
+    //stroke(getk[2]/3 - (this.h/2), this.h, 30, 40);
     //console.log(getk[0], getk[1], getk[2]);
     var add = 1;    
     if (this.h > 70) {
