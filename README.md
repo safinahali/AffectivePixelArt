@@ -6,6 +6,7 @@
 - Change particle properties, force, acceleration to make the perlin stuff in the mirror_pix.js file
 - The affdex stuff is currently sitting inside the html file, feel free to organize it, make a new js file. 
 - Use the [art parameters sheet](https://docs.google.com/a/andrew.cmu.edu/spreadsheets/d/1sMEO8zEOIgmsorEUKfX7ZuyaTUC0Gra1PdSQ-_f_GhQ/edit?usp=sharing) -  for aesthetic emotion relationships if you want.
+- Use the sketch in 'flowfield_from_image' folder for the flow field stuff. 
 
 
 ## Dependencies 
