@@ -30,7 +30,8 @@ function Particle() {
 
     //img = loadImage("assets/sample.jpg");
     //image(img,0,0, width, height);
-    var getk  = img.get(this.pos.x, this.pos.y);
+    //uncomment
+    //var getk  = img.get(this.pos.x, this.pos.y);
     //this is cool colors with perlin noise
     stroke(20, this.h, 60, 30);
     //this is getting colors from the image
