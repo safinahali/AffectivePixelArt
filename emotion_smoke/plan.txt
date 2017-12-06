@@ -1,0 +1,16 @@
+1. audio keyword extraction
+2. if find match in image bank, select
+	else random fog shape
+4. if found convert image to binary mask
+   - for now use pre-rendered masks
+5. resize image to center of canvas
+   - right now use preset size to resize it to
+   - actually just have it at the right size to begin with LOL
+--------------------------------------------------------------------------
+5. use js to read in pixel by pixel of selected image
+7. plot red pixels on canvas for non-black pixels
+8. run perlin fog noise to dissolve into sharper fog
+---------------------------------------------------------------------------
+9. then have color changed to brighter blue as fog edges form to smoother curved soft shape
+10. soft beautiful music playing
+---------------------------------------------------------------------------
